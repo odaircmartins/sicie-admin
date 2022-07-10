@@ -75,9 +75,9 @@ const useAuth = () => {
 
         let resultado = api.post( '/recovery-password', formValues)
             .then(response => {
-                if(response.status === 200) {
-                    localStorage.setItem('token', JSON.stringify(response.data.token));
-                    api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+                if(response.status === 200) {                    
+                    //localStorage.setItem('token', JSON.stringify(response.data.token));
+                    //api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
                     return 'Sucesso';
                 }
             })
