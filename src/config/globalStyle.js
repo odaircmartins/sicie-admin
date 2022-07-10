@@ -7,6 +7,19 @@ const breakpoints = {
 
 const GlobalStyle = createGlobalStyle`
     html {
+        --color-one: #03c9d7;
+        --color-two: #fb9678;
+        --button-color: var(--color-one);
+        --textfield-color: var(--color-one);
+        --switch-color: var(--color-one);
+        --select-color: var(--color-one);
+        --upload-image-color: var(--color-one);
+
+        --color-gray: #777e89;
+        --color-gray-light: #212121;
+        --primary-font: 'DM Sans', sans-serif;
+        
+        --color-blue-contrast: var(--color-light);
         --color-dark: #555;
         --color-dark-rgb: 68,68,68;
         --color-dark-contrast: #f6f6f6;
@@ -14,8 +27,7 @@ const GlobalStyle = createGlobalStyle`
         --color-light: #FFFFFF;
         --color-light-rgb: 246,246,246;
         --color-light-contrast: var(--color-dark);
-        --color-light-hover: #eee;
-        --color-gray: #949494;
+        --color-light-hover: #eee;        
         --color-gray-contrast: var(--color-light);
         --color-lightgray: #bbb;
         --color-lightgray-contrast: var(--color-light);
@@ -33,8 +45,6 @@ const GlobalStyle = createGlobalStyle`
         --color-red-contrast: var(--color-light);
         --color-orange: #ffc000;
         --color-orange-contrast: var(--color-light);
-        --color-blue: #0058e9;
-        --color-blue-contrast: var(--color-light);
         --color-border: rgba(0,0,0, .08);
         --color-border-hover: rgba(0,0,0, .15);
         --border-radius: 4px;
@@ -50,7 +60,6 @@ const GlobalStyle = createGlobalStyle`
         --space-8: 60px;
         --space-9: 80px;
         --space-10: 110px;
-        --primary-font: 'Roboto', sans-serif;
         --fsize-1: 8px;
         --fsize-2: 9px;
         --fsize-3: 11px;
@@ -78,7 +87,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-size: var(--fsize-3);
         font-family: var(--primary-font);
-        background-color: var(--color-light);
+        background-color: #fafafa;
         color: var(--color-dark);
     }
 
@@ -117,12 +126,12 @@ const GlobalStyle = createGlobalStyle`
     
     a {
         text-decoration: none;
-        color: var(--color-primary);
+        /* color: var(--color-primary); */
     }
     
     a:hover {
         text-decoration: underline;
-        color: var(--color-primary-hover);
+        /* color: var(--color-primary-hover); */
     }
     
     input {

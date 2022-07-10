@@ -8,11 +8,12 @@ const LinksGroup = styled.div`
   flex-direction: column;
   flex-grow: ${p => Number(!p.compact)};
   padding: 24px 0 14px 0;
-  margin-right: 2px;
   overflow: hidden;
   overflow-y: auto;
-  background-color: rgba(var(--color-secondary-rgb), 0.1);
+  background-color: #fff;
   transition: flex-grow 0.3s cubic-bezier(0.4, 0, 1, 1);
+  scrollbar-color: #4fc3f7 #fff;
+  scrollbar-width: thin !important;
   ::-webkit-scrollbar {
     width: 4px;
   }
@@ -22,12 +23,12 @@ const LinksGroup = styled.div`
   }
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.4);
+    background: #4fc3f7;
     border-radius: 4px;
   }
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: #3f3f3f;
   }
   @media(max-width: ${bp.desktop}) {
       flex-grow: 1;
@@ -37,30 +38,30 @@ const LinksGroup = styled.div`
 const DenseNavLinks = styled(NavLink)`
   && {
     box-shadow: none;
-    min-height: 36px;
+    min-height: 48px;
   }
 `;
 
 const links = [
   {
     to: "/usuarios",
-    icon: "fas fa-user",
+    icon: "far fa-user",
     label: "Usuário",
   },
   {
     to: "/alterar-senha",
-    icon: "fas fa-key",
+    icon: "fas fa-fingerprint",
     label: "Alterar senha",
   },
   {
-    to: "/criar-evento",
-    icon: "fas fa-calendar",
-    label: "Criar evento",
+    to: "/listar-eventos",
+    icon: "far fa-list-alt",
+    label: "Eventos",
   },
   {
-    to: "/listar-eventos",
-    icon: "fas fa-list-alt",
-    label: "Listar Eventos",
+    to: "/prestadores-servicos",
+    icon: "fa fa-briefcase",
+    label: "Serviços",
   },
 ];
 

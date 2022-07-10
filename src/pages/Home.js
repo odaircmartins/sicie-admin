@@ -14,8 +14,8 @@ const Panel = () => {
                 <Link to="/painel"> Home </Link>
                 <Link to="/usuarios"> Usuários </Link>
                 <Link to="/alterar-senha"> Alterar senha </Link>
-                <Link to="/criar-evento"> Criar evento </Link>
-                <Link to="/listar-eventos"> Listar eventos </Link>
+                <Link to="/listar-eventos"> Eventos </Link>
+                <Link to="/prestadores-servico"> Serviços </Link>
 
                 <button onClick={ handleLogout }>Logout</button>
             </Router>    

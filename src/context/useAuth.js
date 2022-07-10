@@ -35,11 +35,20 @@ const useAuth = () => {
                 }
             })
             .catch(error => {
+
+                if (error["response"] === undefined){
+                    return "O servidor de dados está temporariamente indisponível. Tente mais tarde.";
+                }
+
+                if (error.response["data"] === undefined){
+                    return "O servidor de dados está temporariamente indisponível. Tente mais tarde.";
+                }
+
                 return error.response.data.message;
             });
 
         return await resultado;
-    }
+    };
 
     const handleChangeTemporaryPassword = async (formValues) => {
         
@@ -58,7 +67,27 @@ const useAuth = () => {
             });
 
         return await resultado;
-    }
+    };
+
+    const handleForgotPassword = async (formValues) => {
+        
+        api.defaults.headers.Authorization = `Bearer ${tokenLogin}`;
+
+        let resultado = api.post( '/recovery-password', formValues)
+            .then(response => {
+                if(response.status === 200) {
+                    localStorage.setItem('token', JSON.stringify(response.data.token));
+                    api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+                    return 'Sucesso';
+                }
+            })
+            .catch(error => {
+                return 'E-mail não encontrado na base de dados';
+                //return error.response.data.message;
+            });
+
+        return await resultado;
+    };
 
     const handleLogout = async () => {
         setAuthenticated(false);
@@ -66,7 +95,7 @@ const useAuth = () => {
         localStorage.removeItem('email');
         api.defaults.headers.Authorization = undefined;
         history.push('/login');
-    }
+    };
 
     return { 
         authenticated, 
@@ -74,6 +103,7 @@ const useAuth = () => {
         tokenLogin, 
         handleLogin, 
         handleChangeTemporaryPassword, 
+        handleForgotPassword,
         handleLogout };
 }
 

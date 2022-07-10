@@ -44,7 +44,7 @@ const Field = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: ${p => p.selected ? '2px solid #FF7F50' : '2px solid #eee'};
+    border-bottom: ${p => p.selected ? '2px solid var(--color-two);' : '2px solid #eee'};
     margin-bottom: 25px;
 `;
 
@@ -72,19 +72,19 @@ const ForgotLink = styled.div`
 `;
 
 const ForgotLinkElement = styled.a`
-    color: #FF7F50;
+    color: var(--color-two);
     font-size: 0.8em;
     text-decoration: none;
     font-weight: 500;
 
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
-        color: #FF7F50;
+        color: var(--color-two);
     }
 `;
 
 const SubmitButton = styled.input`
-    background: #FF7F50;
+    background: var(--color-two);
     color: #fff;
     border: none;
     outline: none;
@@ -122,19 +122,22 @@ const Login = () => {
     const [ newPassword, setNewPassword ] = useState('');
     const [ newPasswordRepeated, setNewPasswordRepeated ] = useState('');
     const [ changePassword, setChangePassword ] = useState(false);
+    const [ emailToRecoverPassword, setEmailToRecoverPassword ] = useState('');
+    const [ forgotPassword, setForgotPassword ] = useState(false);
     const [ alertSuccess, setAlertSuccess ] = useState(false);
     const [ alertError, setAlertError ] = useState(false);
     const [ messageError, setMessageError ] = useState('Erro');
+    const [ messageSuccess, setMessageSuccess ] = useState('OK');
     const [ loading, setLoading ] = useState(false);
     const [ emailSelected, setEmailSelected ] = useState(0);
     const [ passwordSelected, setPasswordSelected ] = useState(0);
-    const [ eyeClicked, setEyeClicked] = useState(true);
-    const [formValues, setFormValues] = useState({
+    const [ eyeClicked, setEyeClicked ] = useState(true);
+    const [ formValues, setFormValues ] = useState({
         email: '',
         password: ''
     });
-    const { handleLogin, handleChangeTemporaryPassword } = useContext(Context);
-
+    const { handleLogin, handleChangeTemporaryPassword, handleForgotPassword } = useContext(Context);
+    
     //Handles
     const handleOpenChangePassword = () => {
         setChangePassword(true);
@@ -142,6 +145,14 @@ const Login = () => {
   
     const handleCloseChangePassword = () => {
         setChangePassword(false);
+    };
+
+    const handleOpenForgotPassword = () => {
+        setForgotPassword(true);
+    };
+
+    const handleCloseForgotPassword = () => {
+        setForgotPassword(false);
     };
 
     const handleShowAlertSuccess = () => {
@@ -165,6 +176,10 @@ const Login = () => {
         setNewPassword(e.target.value);
     };
 
+    const handleEmailToRecoverPassword = (e) => {
+        setEmailToRecoverPassword(e.target.value);
+    };
+
     const handleNewPasswordRepeated = (e) => {
         setNewPasswordRepeated(e.target.value);
     };
@@ -182,12 +197,12 @@ const Login = () => {
 
         setLoading(false);  
         if(resultado === 'Senha é temporária'){             
-            handleOpenChangePassword();
+            handleOpenChangePassword();            
         }else{
             setMessageError(resultado);
             handleShowAlertError();
         }
-    }
+    };
 
     const handleSubmitChangePassword = async (e) => {  
         e.preventDefault();     
@@ -210,6 +225,7 @@ const Login = () => {
 
             if(resultado === 'Sucesso'){
                 formValues.password = newPassword; 
+                setMessageSuccess('Senha alterada com sucesso');
                 handleCloseChangePassword();
                 handleShowAlertSuccess();                
             } else {
@@ -217,7 +233,33 @@ const Login = () => {
                 handleShowAlertError();            
             }
         }
-    }
+    };
+
+    const handleSubmitForgotPassword = async (e) => {  
+        e.preventDefault();     
+        setLoading(true);  
+
+        if(emailToRecoverPassword === ''){   
+            setLoading(false);  
+            setMessageError('Informe um endereço de e-mail');                
+            handleShowAlertError();
+        } else {
+            let resultado = await handleForgotPassword({
+                email: emailToRecoverPassword
+            });
+            
+            setLoading(false);  
+
+            if(resultado === 'Sucesso'){
+                setMessageSuccess('E-mail enviado sucesso para ' + emailToRecoverPassword);
+                handleCloseForgotPassword();
+                handleShowAlertSuccess();                
+            } else {
+                setMessageError(resultado); 
+                handleShowAlertError();            
+            }
+        }
+    };
 
     //Others
     const vertical = 'bottom';
@@ -280,7 +322,7 @@ const Login = () => {
                         </EyeBtn>
                     </Field>
                     <ForgotLink>
-                        <ForgotLinkElement href="/ajustar">
+                        <ForgotLinkElement onClick={handleOpenForgotPassword}>
                             Esqueceu a senha?
                         </ForgotLinkElement>
                     </ForgotLink>
@@ -291,7 +333,7 @@ const Login = () => {
 
         <Snackbar anchorOrigin={{ vertical, horizontal }} open={alertSuccess} autoHideDuration={6000} onClose={handleCloseAlert}>
             <Alert onClose={handleCloseAlert} severity="info" sx={{ width: '100%' }}>
-                Senha alterada com sucesso
+                {messageSuccess}
             </Alert>
         </Snackbar>
 
@@ -339,6 +381,30 @@ const Login = () => {
             <DialogActions>
                 <Button color="inherit" variant="outlined" onClick={handleCloseChangePassword}>Cancelar</Button>
                 <Button color="warning" variant="contained" onClick={handleSubmitChangePassword}>Confirmar</Button>
+            </DialogActions>
+        </Dialog>
+
+        <Dialog open={forgotPassword} onClose={handleCloseForgotPassword}>
+            <DialogTitle>Recuperação de senha</DialogTitle>
+            <DialogContent>
+                <DialogContentText>
+                    Informe seu e-mail e uma mensagem será enviada a ele contendo sua nova senha provisória.
+                </DialogContentText>
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="recovery-password"
+                    label="E-mail"
+                    type="text"
+                    color="warning"
+                    fullWidth
+                    variant="standard"
+                    onChange={handleEmailToRecoverPassword || ''}
+                />
+            </DialogContent>
+            <DialogActions>
+                <Button color="inherit" variant="outlined" onClick={handleCloseForgotPassword}>Cancelar</Button>
+                <Button color="warning" variant="contained" onClick={handleSubmitForgotPassword}>Confirmar</Button>
             </DialogActions>
         </Dialog>
         </>  

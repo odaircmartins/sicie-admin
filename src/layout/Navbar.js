@@ -11,8 +11,8 @@ import NavToggle from "./navbar/NavToggle";
 import { Context } from "../context/authContext";
 
 const StyledNav = styled.nav`
-    background-color: black;
-    width: ${p => p.compact ? "70px" : "var(--navbar-width)"};
+    background-color: #fff;
+    width: ${p => p.compact ? "74px" : "200px"};
     height: 100vh;
     position: relative;
     z-index: 1000;
@@ -21,10 +21,12 @@ const StyledNav = styled.nav`
     transition-property: width, transform !important;
     transition-duration: 0.3s !important;
     transition-timing-function: cubic-bezier(0.4, 0, 1, 1) !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px;
 
     &::before{
         content:"";
-        background-color: rgba(var(--color-secondary-rgb), .2);
         position: absolute;
         width: 100%;
         height: 100%;
@@ -49,7 +51,7 @@ function Navbar(props){
             <StyledNav compact={compact} {...props}>
                 <Logo  compact={compact}/>
                 <NavLinksGroup compact={compact}/>
-                <NavLink compact={compact} onClick={ handleLogout } iconClassName="fas fa-sign-out-alt" label="Sair"/>
+                <NavLink compact={compact} onClick={handleLogout} iconClassName="fas fa-sign-out-alt" label="Sair"/>
                 <NavToggle compact={compact} setCompact={setCompact}/>
             </StyledNav>
         </>

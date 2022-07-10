@@ -6,8 +6,10 @@ import Login from '../pages/Login';
 import Layout from '../layout/Layout';
 import Users from '../pages/Users';
 import ChangePassword from '../pages/ChangePassword';
-import CreateEvent from '../pages/CreateEvent';
-import ListEvents from '../pages/ListEvents';
+import CreateEvent from '../pages/CreateEvent_V2';
+import CreateFacility from '../pages/CreateFacility_V1';
+import ListEvents from '../pages/ListEvents_V2';
+import ListFacilities from '../pages/ListFacilities_V1';
 
 const CustomRoute = ({ isPrivate, ...rest }) => {
     const { loading, authenticated } = useContext(Context);
@@ -27,7 +29,9 @@ const Routes = () => {
                 <CustomRoute isPrivate exact path="/usuarios" component={Users} />
                 <CustomRoute isPrivate exact path="/alterar-senha" component={ChangePassword} />
                 <CustomRoute isPrivate exact path="/criar-evento" component={CreateEvent} />
+                <CustomRoute isPrivate exact path="/criar-prestador-servico" component={CreateFacility} />
                 <CustomRoute isPrivate exact path="/listar-eventos" component={ListEvents} />
+                <CustomRoute isPrivate exact path="/prestadores-servicos" component={ListFacilities} />
             </Layout>
         </Switch>
     );

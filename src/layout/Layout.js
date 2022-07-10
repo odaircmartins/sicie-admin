@@ -8,6 +8,14 @@ const Grid = styled.div`
     display: grid;
     grid-template-columns: min-content 1fr;
     grid-template-rows: min-content 1fr;
+
+    main{
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 37px 0 0 30px;
+        flex-direction: column;        
+    }
 `
 
 const GridNav = styled.div`
@@ -15,7 +23,7 @@ const GridNav = styled.div`
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 3;
-    background: black;
+    background: #fff;
     color: white;
 `
 

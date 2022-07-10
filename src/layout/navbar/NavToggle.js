@@ -5,9 +5,8 @@ import {breakpoints as bp} from '../../config/globalStyle';
 const Button = styled.button`
     background-color: transparent;
     border: none;
-    min-height: 42px;
-    color: rgba(255,255,255, .7);
-    padding: 0 24px;
+    min-height: 48px;
+    color: #3f3f3f;
     box-shadow: 0 -1px 0 0 rgba(255 255 255 / 10%);
     text-align: ${p => p.compact ? 'center' : 'right'};
     i {

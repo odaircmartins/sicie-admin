@@ -4,31 +4,33 @@ import styled from "styled-components";
 const StyledLink = styled(Link)`
   font-size: var(--fsize-7);
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-two);
   min-height: 48px;
   display: flex;
   align-items: center;
-  padding: 0 20px 0 25px;
-  border-bottom: rgba(255, 255, 255, 0.1) 1px solid;
+  padding-left: 19px;
+  border-bottom: var(--color-two) 1px solid;
   
   &:hover {
     text-decoration: none;
+    color: #3f3f3f;
   }
 
   span {
+    margin-left: 16px;
     font-weight: 500;
-    color: rgba(255, 255, 255, .9);
+    color: black;
     opacity: ${p => Number(!p.compact)};
     transition: opacity 0.3s cubic-bezier(0.4, 0, 1, 1);
   }
 `;
 
 function Logo(props) {
-    return(
-        <StyledLink {...props} to="/">
-            S<span>icie</span>
-        </StyledLink>
-    );
+  return (
+    <StyledLink {...props} to="/">
+      S<span>sicie</span>
+    </StyledLink>
+  );
 }
 
 export default Logo;
