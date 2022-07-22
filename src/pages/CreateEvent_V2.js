@@ -134,7 +134,7 @@ const Event = () => {
     };
 
     //Models
-    const categoriesModel = ["Arrancada", "Autódromo", "Cartódromo"];
+    const categoriesModel = ["Arrancada", "Autódromo", "Kartódromo"];
     const formModel = {
         synchronized: false,
         validFrom: dateToTimestamp(new Date()),
@@ -190,6 +190,11 @@ const Event = () => {
 
         // Faz uma cópia do estado 'formValues' e substitui o
         //'value' conforme o '[name]' do campo em uso
+        if (name === "group"){
+            const stringWithoutSpace = value.replace(/\s/g, '');
+            value = stringWithoutSpace.toLowerCase();
+        }
+
         if (value === '0'){
             setFormValues({ ...formValues, [name]: 1 });
             return;

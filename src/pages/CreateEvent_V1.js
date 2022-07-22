@@ -36,7 +36,7 @@ const Event = () => {
     const [image0, setImage0] = useState('');
     const [image1, setImage1] = useState('');
     const [image2, setImage2] = useState('');
-    const [categories, setCategories] = useState(["Arrancada", "Autódromo", "Cartódromo"]);
+    const [categories, setCategories] = useState(["Arrancada", "Autódromo", "Kartódromo"]);
     const [valueValidFrom, setValueValidFrom] = useState(null);
     const [valueValidUntil, setValueValidUntil] = useState(null);
     const [category, setCategory] = useState('');
