@@ -57,6 +57,7 @@ const Event = () => {
         const eventTicketPrice3Float = currencyToFloat(formValues.eventTicketPrice3);
         const eventTicketPrice4Float = currencyToFloat(formValues.eventTicketPrice4);
         const eventTicketPrice5Float = currencyToFloat(formValues.eventTicketPrice5);
+        const stringWithoutSpace = formValues.group.replace(/\s/g, '');
 
         //Convert Rich Text of HTML to JSON RAW format
         const summaryRaw = convertToRaw(richSummaryState.getCurrentContent());
@@ -75,6 +76,7 @@ const Event = () => {
         formValuesPreparedToSubmit.eventTicketPrice5 = eventTicketPrice5Float;
         formValuesPreparedToSubmit.summary = summaryJson;
         formValuesPreparedToSubmit.installments = installmentsInteger;
+        formValuesPreparedToSubmit.group = stringWithoutSpace.toLowerCase();
         
         //Check no required fields about ticket price and delete if didn't used
         if (formValuesPreparedToSubmit.eventTicketType2 === "" || formValuesPreparedToSubmit.eventTicketPrice2 === ""){
@@ -190,10 +192,6 @@ const Event = () => {
 
         // Faz uma cópia do estado 'formValues' e substitui o
         //'value' conforme o '[name]' do campo em uso
-        if (name === "group"){
-            const stringWithoutSpace = value.replace(/\s/g, '');
-            value = stringWithoutSpace.toLowerCase();
-        }
 
         if (value === '0'){
             setFormValues({ ...formValues, [name]: 1 });
