@@ -6,9 +6,9 @@ import Login from '../pages/Login';
 import Layout from '../layout/Layout';
 import Users from '../pages/Users';
 import ChangePassword from '../pages/ChangePassword';
-import CreateEvent from '../pages/CreateEvent_V2';
+import CreateEvent from '../pages/CreateEvent_V3';
 import CreateFacility from '../pages/CreateFacility_V1';
-import ListEvents from '../pages/ListEvents_V2';
+import ListEvents from '../pages/ListEvents_V3';
 import ListFacilities from '../pages/ListFacilities_V1';
 
 const CustomRoute = ({ isPrivate, ...rest }) => {

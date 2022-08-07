@@ -17,7 +17,7 @@ const SwitchStyled = styled(Switch)(({ theme }) => ({
 
 function SwitchMuiStyled(props) {
     return (
-        <FormControlLabelStyled control={<SwitchStyled {...props}/>} label="Ativo" />
+        <FormControlLabelStyled control={<SwitchStyled {...props}/>} label={props.label} />
     );
 }
 
