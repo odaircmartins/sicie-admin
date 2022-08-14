@@ -179,7 +179,6 @@ const Event = () => {
     //Load initial data
     useEffect(() => {
         if (eventDataTransport !== '') {
-            console.log(eventDataTransport);
             setFormValues(eventDataTransport);
             const raw = JSON.parse(eventDataTransport.summary);
             const content = convertFromRaw(raw);            
