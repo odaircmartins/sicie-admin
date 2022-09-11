@@ -18,7 +18,6 @@ import DatePickerMuiStyled from "../uiComponents/DatePickerMuiStyled";
 import { cpfMask, removeMask } from "../uiComponents/MasksAndValidations";
 import Title from '../uiComponents/Title';
 import Area from '../uiComponents/Area';
-import { set } from "date-fns";
 
 //Requires
 const cpfValidation = require('validar-cpf');
@@ -49,7 +48,7 @@ const Facility = () => {
             if (response.status === 200) {
                 setOpenLoading(false);
                 handleResetForm();
-                history.push('/prestadores-servicos');
+                history.push('/servicos');
             }
         })
         .catch(error => {
@@ -66,7 +65,7 @@ const Facility = () => {
                     setOpenLoading(false);
                     handleResetForm();
                     handleShowAlertSuccess();
-                    history.push('/prestadores-servicos');
+                    history.push('/servicos');
                 }
             })
             .catch(error => {
@@ -218,21 +217,20 @@ const Facility = () => {
                                 <DatePickerMuiStyled label="Término" value={formValues.validUntil} onChange={handleValidUntil || ''} required />
                             </Grid>
 
-
                             <Grid item xs={12}>
                                 <TextFieldMuiStyled id="outlined-basic" label="Motivo" value={formValues.reason} name="reason" onChange={handleInputChange || ''} required />
                             </Grid>
 
                             <Grid item xs={7} >
                             </Grid>
-
+ 
                             <Grid item xs={2} >
-                                <SwitchMuiStyled name="isActive" checked={formValues.isActive} onChange={handleIsActive || false} />
+                                <SwitchMuiStyled name="isActive" label="Ativo" checked={formValues.isActive} onChange={handleIsActive || false} />
                             </Grid>
 
                             <Grid item xs={3} >
                                 <ButtonMuiStyled type="submit" variant="outlined">Confirmar</ButtonMuiStyled>
-                            </Grid>                            
+                            </Grid>                             
                         </Grid>
                     </form>
 

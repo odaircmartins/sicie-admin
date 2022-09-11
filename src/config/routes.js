@@ -10,6 +10,8 @@ import CreateEvent from '../pages/CreateEvent_V3';
 import CreateFacility from '../pages/CreateFacility_V1';
 import ListEvents from '../pages/ListEvents_V3';
 import ListFacilities from '../pages/ListFacilities_V1';
+import ListAdvertisements from '../pages/ListAdvertisements_V1';
+import CreateAdvertisement from '../pages/CreateAdvertisement_V1';
 
 const CustomRoute = ({ isPrivate, ...rest }) => {
     const { loading, authenticated } = useContext(Context);
@@ -27,11 +29,13 @@ const Routes = () => {
             <CustomRoute exact path='/login' component={Login} />
             <Layout> 
                 <CustomRoute isPrivate exact path="/usuarios" component={Users} />
-                <CustomRoute isPrivate exact path="/alterar-senha" component={ChangePassword} />
+                <CustomRoute isPrivate exact path="/senha" component={ChangePassword} />
+                <CustomRoute isPrivate exact path="/eventos" component={ListEvents} />
                 <CustomRoute isPrivate exact path="/criar-evento" component={CreateEvent} />
-                <CustomRoute isPrivate exact path="/criar-prestador-servico" component={CreateFacility} />
-                <CustomRoute isPrivate exact path="/listar-eventos" component={ListEvents} />
-                <CustomRoute isPrivate exact path="/prestadores-servicos" component={ListFacilities} />
+                <CustomRoute isPrivate exact path="/servicos" component={ListFacilities} />
+                <CustomRoute isPrivate exact path="/criar-servico" component={CreateFacility} />
+                <CustomRoute isPrivate exact path="/anunciantes" component={ListAdvertisements} />
+                <CustomRoute isPrivate exact path="/criar-anunciante" component={CreateAdvertisement} />
             </Layout>
         </Switch>
     );

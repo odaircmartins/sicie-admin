@@ -3,6 +3,7 @@ import React, { createContext } from 'react';
 import useAuth from './useAuth';
 import useEvent from './useEvent';
 import useFacility from './useFacility';
+import useAdvertisement from './useAdvertisement';
 
 const Context = createContext();
 
@@ -31,6 +32,11 @@ const AuthProvider = ({children}) => {
             facilityDataTransport, 
             setFacilityDataTransport } = useFacility();
 
+    const { advertisementAction, 
+            setAdvertisementAction, 
+            advertisementDataTransport, 
+            setAdvertisementDataTransport } = useAdvertisement();
+
     return (
         <Context.Provider value={{ 
             authenticated, 
@@ -53,7 +59,11 @@ const AuthProvider = ({children}) => {
             facilityAction, 
             setFacilityAction, 
             facilityDataTransport, 
-            setFacilityDataTransport
+            setFacilityDataTransport,
+            advertisementAction, 
+            setAdvertisementAction, 
+            advertisementDataTransport, 
+            setAdvertisementDataTransport
         }}>
             {children}
         </Context.Provider>

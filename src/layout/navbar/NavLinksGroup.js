@@ -49,20 +49,25 @@ const links = [
     label: "Usuário",
   },
   {
-    to: "/alterar-senha",
+    to: "/senha",
     icon: "fas fa-fingerprint",
     label: "Alterar senha",
   },
   {
-    to: "/listar-eventos",
+    to: "/eventos",
     icon: "far fa-list-alt",
     label: "Eventos",
   },
   {
-    to: "/prestadores-servicos",
+    to: "/servicos",
     icon: "fa fa-briefcase",
     label: "Serviços",
   },
+  {
+    to: "/anunciantes",
+    icon: "fa fa-money",
+    label: "Anunciantes",
+  }
 ];
 
 function NavLinksGroup(props) {
